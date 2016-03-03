@@ -1,0 +1,112 @@
+<style>
+.tile-area {
+  border: 1px;
+  width: 100%;
+}
+  .draggable {
+  }
+
+  ol.time-slots, ol.date-list {
+    list-style: none;
+  }
+  .session {
+    text-align: center;
+    vertical-align: middle;
+    background: #5757EF;
+    color: white;
+  }
+
+  .tile {
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    width: 100px;
+    height: 100px;
+    display: table;
+    overflow: hidden;
+    margin: 5px;
+  }
+  .tile-inner {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  </style>
+<template id="canned-json">
+</template>
+
+<template id="session-template">
+  <li class="draggable tile session" data-session-id="" data-session-title="" data-session-convener="" data-session-space="">
+    <div class="tile-inner">
+    <p class="session-title"> <span></span></p>
+  </div>
+</li>
+
+</template>
+
+<div class="modal fade" id="new-session-modal" tabindex="-1" role="dialog" aria-labelledby="new-session-label" aria-hidden="true">
+   <div class = "modal-dialog">
+      <div class = "modal-content">
+         <div class = "modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class = "modal-title" id = "new-session-label">New Session</h4>
+         </div>
+         <div class = "modal-body">
+           <form role="form">
+               <div class="form-group">
+                 <label for="session-title">Title</label>
+                   <input type="text" class="form-control" id="session-title" placeholder="Enter session title"/>
+               </div>
+               <div class="form-group">
+                 <label >Description</label>
+                   <textarea class="form-control" id="session-description" placeholder="abstract of your session here"></textarea>
+               </div>
+               <button id="new-session-submit" type="submit" class="btn btn-default" data-dismiss="modal">Save</button>
+             </form>
+         </div>
+         <div class = "modal-footer">
+         </div>
+      </div>
+   </div>
+</div>
+
+  <div class="container-fluid">
+  <div class="page-header" >
+    <h1>WTF Board</h1>
+</div>
+  <div class="collapse navbar-collapse" >
+      <ul class="nav navbar-nav">
+        <li class="active"><button id="btn-new-session" type="button" class="btn btn-primary" data-toggle="modal" data-target="#new-session-modal">Add Session</button></li>
+      </ul>
+</div>
+<div id="session-view" class="tile-area row">
+  <h4>Conference Agenda</h4>
+  <ol class="date-list ">
+    {{#each-in model as |eventdate daysevents|}}
+    <li class="date-row">
+    <h4>{{eventdate}}</h4>
+    <ol class="time-slots">
+      <li>
+        {{#each-in daysevents as |eventtime events|}}
+          <li class="time-row">
+            <h4>{{eventtime}}</h4>
+            <ul class="list-inline">
+              {{#each events as |session| }}
+              <li class="draggable tile session" data-session-id="{{session.id}}">
+                <div class="tile-inner">
+                  <span class="badge">{{session.space}}</span>
+                <p class="session-title">{{session.title}} <span>{{session.convener}}</span></p>
+              </div>
+            </li>
+            {{/each}}
+            </ul>
+          </li>
+        {{/each-in}}
+      </li>
+    </ol>
+    </li>
+    {{/each-in}}
+  </ol>
+  <hr >
+  </div>
+</div>
