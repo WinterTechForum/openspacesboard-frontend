@@ -1,0 +1,31 @@
+.tile-area {
+  border: 1px;
+  width: 100%;
+}
+  .draggable {
+  }
+
+  ol.time-slots, ol.date-list {
+    list-style: none;
+  }
+  .session {
+    text-align: center;
+    vertical-align: middle;
+    background: #5757EF;
+    color: white;
+  }
+
+  .tile {
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    width: 100px;
+    height: 100px;
+    display: table;
+    overflow: hidden;
+    margin: 5px;
+  }
+  .tile-inner {
+    display: table-cell;
+    vertical-align: middle;
+  }

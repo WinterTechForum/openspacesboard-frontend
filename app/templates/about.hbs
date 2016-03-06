@@ -1,3 +1,18 @@
-<h2>About OpenSpaces Board</h2>
-
-<p>This project is intended to assist with scheduling talks in an Open Spaces environment</p>
+<div class="container-fluid">
+  <div class="page-header" >
+    <h1>Simplified Board</h1>
+  </div>
+  <div id="session-view" class="tile-area row">
+    <h4>Conference Agenda</h4>
+    <hr >
+    <ul class="list-inline">
+      {{#each model as |session| }}
+      <li class="draggable tile session" data-session-id="{{session.id}}">
+      <div class="tile-inner">
+      <p class="session-title">{{session.title}} <span>{{session.convener}}</span></p>
+      </div>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+</div>

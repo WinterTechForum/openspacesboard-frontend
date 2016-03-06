@@ -1,37 +1,3 @@
-<style>
-.tile-area {
-  border: 1px;
-  width: 100%;
-}
-  .draggable {
-  }
-
-  ol.time-slots, ol.date-list {
-    list-style: none;
-  }
-  .session {
-    text-align: center;
-    vertical-align: middle;
-    background: #5757EF;
-    color: white;
-  }
-
-  .tile {
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
-    width: 100px;
-    height: 100px;
-    display: table;
-    overflow: hidden;
-    margin: 5px;
-  }
-  .tile-inner {
-    display: table-cell;
-    vertical-align: middle;
-  }
-
-  </style>
 <template id="canned-json">
 </template>
 
@@ -70,39 +36,32 @@
    </div>
 </div>
 
-  <div class="container-fluid">
+<div class="container-fluid">
   <div class="page-header" >
     <h1>WTF Board</h1>
-</div>
+  </div>
   <div class="collapse navbar-collapse" >
       <ul class="nav navbar-nav">
         <li class="active"><button id="btn-new-session" type="button" class="btn btn-primary" data-toggle="modal" data-target="#new-session-modal">Add Session</button></li>
       </ul>
-</div>
-<div id="session-view" class="tile-area row">
-  <h4>Conference Agenda</h4>
+  </div>
+  <div id="session-view" class="tile-area row">
+    <h4>Conference Agenda</h4>
   <ol class="date-list ">
     {{#each-in model as |eventdate daysevents|}}
     <li class="date-row">
     <h4>{{eventdate}}</h4>
     <ol class="time-slots">
-      <li>
         {{#each-in daysevents as |eventtime events|}}
           <li class="time-row">
             <h4>{{eventtime}}</h4>
             <ul class="list-inline">
               {{#each events as |session| }}
-              <li class="draggable tile session" data-session-id="{{session.id}}">
-                <div class="tile-inner">
-                  <span class="badge">{{session.space}}</span>
-                <p class="session-title">{{session.title}} <span>{{session.convener}}</span></p>
-              </div>
-            </li>
-            {{/each}}
+                {{session-listing-listing session=session}}
+              {{/each}}
             </ul>
           </li>
         {{/each-in}}
-      </li>
     </ol>
     </li>
     {{/each-in}}
